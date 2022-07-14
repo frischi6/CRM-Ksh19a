@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>CRM User Detail Page</title>
+	
+	<meta name="viewport" content="width=device-width initial-scale=1" />
+
+	
+	<!-- Thymeleaf -->
+	<link href="/css/bootstrap.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	
+	
+			<form th:action="@{/saveUser}" method="post">
+				<fieldset>
+					<h1>Neuer Benutzer erstellen</h1>
+				
+
+				
+						<input type="text" name="username" id="username"
+							th:value="${username}" placeholder="Benutzername" required="true"
+							autofocus="true" />
+						<input type="password" name="password" id="password"
+							th:value="${password}" placeholder="Passwort" required="true" />
+							
+						
+					<p>
+						<input type="submit" value="Erstellen" />
+					</p>
+				</fieldset>
+			</form>
+		
+
+</body>
+</html>

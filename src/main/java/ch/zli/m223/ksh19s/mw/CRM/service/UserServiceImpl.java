@@ -51,4 +51,15 @@ public class UserServiceImpl implements UserService {
 		userRepository.deleteById(id);
 	}
 
+	@Override
+	public AppUser insertNewUser(String name, String password) {
+		if (name == null)
+			throw new InvalidArgumentException("Name must not be null");
+		// If (user with userName exists) then throw UserAllreadyExistsException
+		if (userRepository.findUserByName(name).isPresent()) {
+			throw new UserAllreadyExistsException("User with name" + name + " already exists");
+		}
+		return userRepository.insert(name, password);
+	}
+
 }
