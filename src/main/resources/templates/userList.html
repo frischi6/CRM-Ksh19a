@@ -55,13 +55,7 @@ th {
 					</tr>
     			</table>
     		</td>
-    		<td> 
-				<table>
-    				<tr th:each="hobby : ${user.hobbies}">
-		  				<td id="table2" th:text="${hobby.hobby}">hobby_hobby</td>
-					</tr>
-    			</table>
-    		</td>	
+    		<td th:text="${user.hobby}">user_hobby</td>
     		<td> 
 				<table>
     				<tr th:each="work : ${user.works}">

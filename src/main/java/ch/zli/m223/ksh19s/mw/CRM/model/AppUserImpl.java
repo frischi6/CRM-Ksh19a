@@ -35,8 +35,7 @@ public class AppUserImpl implements AppUser {
 	@OneToMany(mappedBy = "appUser", cascade = CascadeType.ALL)
 	private List<CourseImpl> courses;
 
-	@OneToMany(mappedBy = "appUser", cascade = CascadeType.ALL)
-	private List<HobbyImpl> hobbies;
+	private String hobby;
 
 	@OneToMany(mappedBy = "appUser", cascade = CascadeType.ALL)
 	private List<WorkImpl> works;
@@ -47,7 +46,6 @@ public class AppUserImpl implements AppUser {
 		/* for JPA only */
 		roles = new ArrayList<>();
 		courses = new ArrayList<>();
-		hobbies = new ArrayList<>();
 		works = new ArrayList<>();
 
 	}
@@ -59,14 +57,20 @@ public class AppUserImpl implements AppUser {
 		this.passwordHash = encoder.encode(password);
 	}
 
-	public AppUserImpl(String name, String password, String[] roleNames, String[] workNames, String[] courseNames) {
+	public AppUserImpl(String name, String password, String[] roleNames, String hobby, String[] workNames,
+			String[] courseNames) {
 		this();
 		this.name = name;
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		this.passwordHash = encoder.encode(password);
 		setRoles(roleNames);
+		this.hobby = hobby;
 		setWorks(workNames);
 		setCourses(courseNames);
+	}
+
+	public void setHobby(String hobby) {
+		this.hobby = hobby;
 	}
 
 	public void setRoles(String... roleNames) {
@@ -119,15 +123,6 @@ public class AppUserImpl implements AppUser {
 	}
 
 	@Override
-	public List<Hobby> getHobbies() {
-		return new ArrayList<>(hobbies);
-	}
-
-	public void addHobbyToList(HobbyImpl newHobby) {
-		hobbies.add(newHobby);
-	}
-
-	@Override
 	public List<Work> getWorks() {
 		return new ArrayList<>(works);
 	}
@@ -174,6 +169,11 @@ public class AppUserImpl implements AppUser {
 	@Override
 	public void deleteUserById(Long id) {
 		courses.remove(0);
+	}
+
+	@Override
+	public String getHobby() {
+		return hobby;
 	}
 
 }

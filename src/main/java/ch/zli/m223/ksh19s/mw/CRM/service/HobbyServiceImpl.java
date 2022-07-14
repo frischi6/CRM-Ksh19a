@@ -33,7 +33,7 @@ public class HobbyServiceImpl implements HobbyService {
 	}
 
 	@Override
-	public Hobby insertHobby(String hobby) {
+	public String insertHobby(String hobby) {
 		if (hobby == null)
 			throw new InvalidArgumentException("Name must not be null");
 		// If (user with userName exists) then throw UserAllreadyExistsException

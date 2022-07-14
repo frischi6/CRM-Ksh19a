@@ -49,7 +49,6 @@ public class ServerInitializer implements ApplicationRunner {
 		courseRepository.insert(FinalsCourses.I3a, arbias);
 		courseRepository.insert(FinalsCourses.IM19A, arbias);
 		hobbyRepository.insert("Shisha", arbias);
-		hobbyRepository.insert("Fussball", arbias);
 		workRepository.insert(FinalsWorks.VR, arbias);
 
 		AppUser yannis = userRepository.insert("Yannis", "yannis");

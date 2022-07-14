@@ -31,6 +31,9 @@
 						  		<input type="checkbox" th:text="${role}" th:value="${role}" th:name="rolenames"/>
 							</li>
 						</ul>
+					<h3>Your favorite Hobby</h3>
+						<input type="text" name="hobby" id="hobby"
+							th:value="${hobby}" required="false" />
 					<h3>Your Workplace</h3>
 						<ul>
 							<li th:each="work : ${T(ch.zli.m223.ksh19s.mw.CRM.finals.FinalsWorks).ALL_WORKS}">

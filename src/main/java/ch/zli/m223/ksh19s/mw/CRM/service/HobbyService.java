@@ -10,7 +10,7 @@ public interface HobbyService {
 
 	Hobby getHobby(Long id);
 
-	Hobby insertHobby(String hobby);
+	String insertHobby(String hobby);
 
 	void deleteHobbyById(Long id);
 

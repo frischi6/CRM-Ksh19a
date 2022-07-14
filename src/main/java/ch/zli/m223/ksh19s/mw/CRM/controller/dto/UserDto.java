@@ -9,16 +9,16 @@ public class UserDto {
 	public Long id;
 	public String email;
 	public List<String> roleList;
+	public String hobby;
 	public List<String> courseList;
-	public List<String> hobbyList;
 	public List<String> workList;
 
 	public UserDto(AppUser user) {
 		id = user.getId();
 		email = user.getEmail();
 		roleList = new ArrayList<>();
+		hobby = user.getHobby();
 		courseList = new ArrayList<>();
-		hobbyList = new ArrayList<>();
 		workList = new ArrayList<>();
 
 		for (var role : user.getRoles()) {
@@ -27,10 +27,6 @@ public class UserDto {
 
 		for (var role : user.getCourses()) {
 			courseList.add(role.getCourse());
-		}
-
-		for (var role : user.getHobbies()) {
-			hobbyList.add(role.getHobby());
 		}
 
 		for (var role : user.getWorks()) {
