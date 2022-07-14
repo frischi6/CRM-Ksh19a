@@ -52,14 +52,14 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public AppUser insertNewUser(String name, String password) {
+	public AppUser insertNewUser(String name, String password, String[] roles) {
 		if (name == null)
 			throw new InvalidArgumentException("Name must not be null");
 		// If (user with userName exists) then throw UserAllreadyExistsException
 		if (userRepository.findUserByName(name).isPresent()) {
 			throw new UserAllreadyExistsException("User with name" + name + " already exists");
 		}
-		return userRepository.insert(name, password);
+		return userRepository.insertNewUser(name, password, roles);
 	}
 
 }

@@ -61,9 +61,10 @@ public class UserWebController {
 
 	@RequestMapping("/saveUser")
 	public String saveNewUser(Model model, @RequestParam("username") String name,
-			@RequestParam("password") String password) {
+			@RequestParam("password") String password,
+			@RequestParam(value = "rolenames", defaultValue = "") String[] roles) {
 		// create a new user
-		AppUser user = userService.insertNewUser(name, password);
+		AppUser user = userService.insertNewUser(name, password, roles);
 		if (user == null) {
 			// Show the form again
 			model.addAttribute("error", "userName already exists");

@@ -26,7 +26,11 @@
 						<input type="password" name="password" id="password"
 							th:value="${password}" placeholder="Passwort" required="true" />
 							
-						
+						<ul>
+							<li th:each="role : ${T(ch.zli.m223.ksh19s.mw.CRM.roles.AppRoles).ALL_ROLES}">
+						  		<input type="checkbox" th:text="${role}" th:value="${role}" th:name="rolenames"/>
+							</li>
+						</ul>
 					<p>
 						<input type="submit" value="Erstellen" />
 					</p>

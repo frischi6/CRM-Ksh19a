@@ -59,6 +59,21 @@ public class AppUserImpl implements AppUser {
 		this.passwordHash = encoder.encode(password);
 	}
 
+	public AppUserImpl(String name, String password, String[] roleNames) {
+		this();
+		this.name = name;
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		this.passwordHash = encoder.encode(password);
+		setRoles(roleNames);
+	}
+
+	public void setRoles(String... roleNames) {
+		this.roles = new ArrayList<>();
+		for (String role : roleNames) {
+			addRoleToList(new RoleImpl(role, this));
+		}
+	}
+
 	@Override
 	public Long getId() {
 		return id;

@@ -14,6 +14,11 @@ public interface UserRepository extends JpaRepository<AppUserImpl, Long> {
 		return save(user);
 	}
 
+	default AppUser insertNewUser(String userName, String password, String[] roleNames) {
+		AppUserImpl user = new AppUserImpl(userName, password, roleNames);
+		return save(user);
+	}
+
 	Optional<AppUserImpl> findUserByName(String name); // Spring black magic-> methodenname wird als sql-query
 														// interpretiert-> in table user select name where name = name
 }
