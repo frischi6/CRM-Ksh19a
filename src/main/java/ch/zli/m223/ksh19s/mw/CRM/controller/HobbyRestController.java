@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ch.zli.m223.ksh19s.mw.CRM.controller.dto.HobbyDTO;
-import ch.zli.m223.ksh19s.mw.CRM.controller.dto.WorkDTO;
-import ch.zli.m223.ksh19s.mw.CRM.controller.dto.WorkInputDto;
+import ch.zli.m223.ksh19s.mw.CRM.controller.dto.HobbyInputDto;
 import ch.zli.m223.ksh19s.mw.CRM.service.HobbyService;
 
 @RestController
@@ -29,19 +28,19 @@ public class HobbyRestController {
 		return hobbyService.getAllHobbies().stream().map(user -> new HobbyDTO(user)).collect(Collectors.toList());
 	}
 
-	@GetMapping("/works/{id}")
-	WorkDTO getWork(@PathVariable("id") Long id) {
-		return new WorkDTO(hobbyService.getWork(id));
+	@GetMapping("/hobbies/{id}")
+	HobbyDTO getHobby(@PathVariable("id") Long id) {
+		return new HobbyDTO(hobbyService.getHobby(id));
 	}
 
-	@PostMapping("/works")
-	WorkDTO insertWork(@RequestBody WorkInputDto workData) {
-		return new WorkDTO(hobbyService.insertWork(workData.work));
+	@PostMapping("/hobbies")
+	HobbyDTO insertHobby(@RequestBody HobbyInputDto hobbyData) {
+		return new HobbyDTO(hobbyService.insertHobby(hobbyData.hobby));
 	}
 
-	@DeleteMapping("/works/{id}")
-	void deleteWork(@PathVariable("id") Long id) {
-		hobbyService.deleteWorkById(id);
+	@DeleteMapping("/hobbies/{id}")
+	void deleteHobby(@PathVariable("id") Long id) {
+		hobbyService.deleteHobbyById(id);
 	}
 
 }
