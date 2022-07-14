@@ -1,5 +1,6 @@
 <!doctype html>
 <html xmlns:th="https://www.thymeleaf.org">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <head>
     <title>Users</title>
     
@@ -9,7 +10,7 @@
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
-  width: 100%;
+  width: 90%;
 }
 
 td, th {
@@ -24,9 +25,11 @@ th {
 
 #table2 {
   border: 0px solid #dddddd;
-  
-
 }
+
+.btn{
+  font-size: 20px; 
+  }
 </style>
   <body>
     <h1>Application User List</h1>
@@ -70,8 +73,12 @@ th {
 					</tr>
     			</table>
     		</td>	
-    		<td>    
-    			<a th:href="@{'/deleteUser/'+${user.id}}">Delete</a>
+    		<td>  
+    			<a th:href="@{'/deleteUser/'+${user.id}}">    		
+    				<button class="btn">
+    					<i class="fa fa-trash"></i>
+    				</button>  
+				</a>
     		</td>			
 		</tr>
 		
