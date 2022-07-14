@@ -7,4 +7,6 @@ public interface FinalsWorks {
 	public static final String FCAARAU = "FC Red Boots Aarau";
 	public static final String BASLER = "Baloise Versicherung";
 
+	public static final String[] ALL_WORKS = { ZKB, VR, STRICHPUNKT, FCAARAU, BASLER };
+
 }

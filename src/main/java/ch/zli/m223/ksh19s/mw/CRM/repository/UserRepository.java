@@ -14,8 +14,9 @@ public interface UserRepository extends JpaRepository<AppUserImpl, Long> {
 		return save(user);
 	}
 
-	default AppUser insertNewUser(String userName, String password, String[] roleNames) {
-		AppUserImpl user = new AppUserImpl(userName, password, roleNames);
+	default AppUser insertNewUser(String userName, String password, String[] roleNames, String[] workNames,
+			String[] courseNames) {
+		AppUserImpl user = new AppUserImpl(userName, password, roleNames, workNames, courseNames);
 		return save(user);
 	}
 

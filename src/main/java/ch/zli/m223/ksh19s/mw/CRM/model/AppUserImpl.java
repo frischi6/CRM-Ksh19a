@@ -59,18 +59,34 @@ public class AppUserImpl implements AppUser {
 		this.passwordHash = encoder.encode(password);
 	}
 
-	public AppUserImpl(String name, String password, String[] roleNames) {
+	public AppUserImpl(String name, String password, String[] roleNames, String[] workNames, String[] courseNames) {
 		this();
 		this.name = name;
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		this.passwordHash = encoder.encode(password);
 		setRoles(roleNames);
+		setWorks(workNames);
+		setCourses(courseNames);
 	}
 
 	public void setRoles(String... roleNames) {
 		this.roles = new ArrayList<>();
 		for (String role : roleNames) {
 			addRoleToList(new RoleImpl(role, this));
+		}
+	}
+
+	public void setWorks(String[] workNames) {
+		this.works = new ArrayList<>();
+		for (String work : workNames) {
+			addWorkToList(new WorkImpl(work, this));
+		}
+	}
+
+	public void setCourses(String[] coursNames) {
+		this.courses = new ArrayList<>();
+		for (String course : coursNames) {
+			addCourseToList(new CourseImpl(course, this));
 		}
 	}
 

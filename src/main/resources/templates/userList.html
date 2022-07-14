@@ -33,7 +33,7 @@ th {
     <table>
     <thead>
     	<tr>
-    		<th>ID</th> <th>Name</th><th>Role</th><th>Hobby</th><th>Arbeitgeber</th>
+    		<th>ID</th> <th>Name</th><th>Role</th><th>Hobby</th><th>Arbeitgeber</th><th>Klasse</th>
 		</tr>
 	</thead>
 		<tr th:each="user : ${users}">
@@ -66,6 +66,13 @@ th {
 				<table>
     				<tr th:each="work : ${user.works}">
 		  				<td id="table2" th:text="${work.work}">work_work</td>
+					</tr>
+    			</table>
+    		</td>	
+    		<td> 
+				<table>
+    				<tr th:each="course : ${user.courses}">
+		  				<td id="table2" th:text="${course.course}">course_course</td>
 					</tr>
     			</table>
     		</td>	

@@ -25,10 +25,22 @@
 							autofocus="true" />
 						<input type="password" name="password" id="password"
 							th:value="${password}" placeholder="Passwort" required="true" />
-							
+					<h3>Your Role</h3>
 						<ul>
 							<li th:each="role : ${T(ch.zli.m223.ksh19s.mw.CRM.roles.AppRoles).ALL_ROLES}">
 						  		<input type="checkbox" th:text="${role}" th:value="${role}" th:name="rolenames"/>
+							</li>
+						</ul>
+					<h3>Your Workplace</h3>
+						<ul>
+							<li th:each="work : ${T(ch.zli.m223.ksh19s.mw.CRM.finals.FinalsWorks).ALL_WORKS}">
+						  		<input type="checkbox" th:text="${work}" th:value="${work}" th:name="worknames"/>
+							</li>
+						</ul>
+					<h3>Your Course</h3>
+						<ul>
+							<li th:each="course : ${T(ch.zli.m223.ksh19s.mw.CRM.finals.FinalsCourses).ALL_COURSES}">
+						  		<input type="checkbox" th:text="${course}" th:value="${course}" th:name="coursenames"/>
 							</li>
 						</ul>
 					<p>

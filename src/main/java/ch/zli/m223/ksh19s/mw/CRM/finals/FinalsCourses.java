@@ -5,4 +5,6 @@ public interface FinalsCourses {
 	public static final String IM19A = "IM19A";
 	public static final String M19C = "M19C";
 
+	public static final String[] ALL_COURSES = { I3a, IM19A, M19C };
+
 }
