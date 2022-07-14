@@ -37,6 +37,15 @@ th {
 		</tr>
 	</thead>
 		<tr th:each="user : ${users}">
+		<script language="javascript" type="text/javascript">
+		var number=1;	
+		for (i = 0; i < 10; i++){
+			if($user.id==i){
+				number=i;
+			}
+				
+			}
+		</script>
 			<td th:text="${user.id}">user_id</td>
 			<td th:text="${user.email}">user_name</td>
 			<td> 
@@ -59,11 +68,16 @@ th {
 		  				<td id="table2" th:text="${work.work}">work_work</td>
 					</tr>
     			</table>
-    		</td>				
+    		</td>	
+    		<td>    
+    			<a th:href="@{'/deleteUser/'+${user.id}}">Delete</a>
+    		</td>			
 		</tr>
 		
     </table>
     
+    
+    <button>Add</button>
    
    
 

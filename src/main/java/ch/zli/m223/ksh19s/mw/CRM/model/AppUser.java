@@ -16,4 +16,6 @@ public interface AppUser extends UserDetails {
 	public List<Hobby> getHobbies();
 
 	public List<Work> getWorks();
+
+	public void deleteUserById(Long id);
 }

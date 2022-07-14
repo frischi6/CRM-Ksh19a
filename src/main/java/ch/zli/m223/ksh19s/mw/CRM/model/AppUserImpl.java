@@ -140,4 +140,9 @@ public class AppUserImpl implements AppUser {
 		return true;
 	}
 
+	@Override
+	public void deleteUserById(Long id) {
+		courses.remove(0);
+	}
+
 }
