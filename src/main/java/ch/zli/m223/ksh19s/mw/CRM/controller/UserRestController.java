@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ch.zli.m223.ksh19s.mw.CRM.controller.dto.CourseDTO;
+import ch.zli.m223.ksh19s.mw.CRM.controller.dto.HobbyDTO;
 import ch.zli.m223.ksh19s.mw.CRM.controller.dto.RoleDTO;
 import ch.zli.m223.ksh19s.mw.CRM.controller.dto.UserDto;
 import ch.zli.m223.ksh19s.mw.CRM.controller.dto.UserInputDto;
@@ -55,5 +57,17 @@ public class UserRestController {
 	List<WorkDTO> getWorksForUser(@PathVariable("id") Long id) {
 		var user = userService.getUser(id);
 		return user.getWorks().stream().map(r -> new WorkDTO(r)).collect(Collectors.toList());
+	}
+
+	@GetMapping("/users/{id}/courses")
+	List<CourseDTO> getCoursesForUser(@PathVariable("id") Long id) {
+		var user = userService.getUser(id);
+		return user.getCourses().stream().map(r -> new CourseDTO(r)).collect(Collectors.toList());
+	}
+
+	@GetMapping("/users/{id}/hobbies")
+	List<HobbyDTO> getHobbiesForUser(@PathVariable("id") Long id) {
+		var user = userService.getUser(id);
+		return user.getHobbies().stream().map(r -> new HobbyDTO(r)).collect(Collectors.toList());
 	}
 }

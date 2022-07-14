@@ -1,20 +1,71 @@
 <!doctype html>
-<html>
+<html xmlns:th="https://www.thymeleaf.org">
   <head>
     <title>Users</title>
+    
   </head>
+  
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  background-color: #dddddd;
+}
+
+#table2 {
+  border: 0px solid #dddddd;
+  
+
+}
+</style>
   <body>
     <h1>Application User List</h1>
     <table>
     <thead>
     	<tr>
-    		<th>ID</th> <th>Name</th>
+    		<th>ID</th> <th>Name</th><th>Role</th><th>Hobby</th><th>Arbeitgeber</th>
 		</tr>
 	</thead>
 		<tr th:each="user : ${users}">
 			<td th:text="${user.id}">user_id</td>
-			<td th:text="${user.name}">user_name</td>
+			<td th:text="${user.email}">user_name</td>
+			<td> 
+				<table>
+    				<tr th:each="role : ${user.roles}">
+		  				<td id="table2" th:text="${role.role}">role_role</td>
+					</tr>
+    			</table>
+    		</td>
+    		<td> 
+				<table>
+    				<tr th:each="hobby : ${user.hobbies}">
+		  				<td id="table2" th:text="${hobby.hobby}">hobby_hobby</td>
+					</tr>
+    			</table>
+    		</td>	
+    		<td> 
+				<table>
+    				<tr th:each="work : ${user.works}">
+		  				<td id="table2" th:text="${work.work}">work_work</td>
+					</tr>
+    			</table>
+    		</td>				
 		</tr>
+		
     </table>
+    
+   
+   
+
   </body>
 </html>

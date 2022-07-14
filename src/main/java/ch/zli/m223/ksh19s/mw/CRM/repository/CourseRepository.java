@@ -1,24 +1,25 @@
 package ch.zli.m223.ksh19s.mw.CRM.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import ch.zli.m223.ksh19s.mw.CRM.model.AppUser;
 import ch.zli.m223.ksh19s.mw.CRM.model.AppUserImpl;
 import ch.zli.m223.ksh19s.mw.CRM.model.Course;
 import ch.zli.m223.ksh19s.mw.CRM.model.CourseImpl;
-import ch.zli.m223.ksh19s.mw.CRM.model.Schoolclass;
 
+@Repository
 public interface CourseRepository extends JpaRepository<CourseImpl, Long> {
 
-	Schoolclass schoolclass = new Schoolclass();
-
-	default Course insert(int indexCourse, AppUser appUser) {
+	default Course insert(String course, AppUser appUser) {
 
 		// cast to impl
 		AppUserImpl studentImpl = (AppUserImpl) appUser;
 
 		// create new Role
-		CourseImpl newCourse = new CourseImpl(schoolclass.getSchoolclass(indexCourse), studentImpl);
+		CourseImpl newCourse = new CourseImpl(course, studentImpl);
 
 		// save Role to DB
 		CourseImpl savedNewCourse = save(newCourse);
@@ -29,5 +30,7 @@ public interface CourseRepository extends JpaRepository<CourseImpl, Long> {
 		// return new Role
 		return savedNewCourse;
 	}
+
+	Optional<CourseImpl> findCourseByCourse(String course); // Spring black magic
 
 }

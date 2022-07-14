@@ -14,5 +14,6 @@ public interface UserRepository extends JpaRepository<AppUserImpl, Long> {
 		return save(user);
 	}
 
-	Optional<AppUserImpl> findUserByName(String name); // Spring black magic
+	Optional<AppUserImpl> findUserByName(String name); // Spring black magic-> methodenname wird als sql-query
+														// interpretiert-> in table user select name where name = name
 }

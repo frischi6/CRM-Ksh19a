@@ -37,7 +37,7 @@ public class WorkServiceImpl implements WorkService {
 		if (work == null)
 			throw new InvalidArgumentException("Name must not be null");
 		// If (user with userName exists) then throw UserAllreadyExistsException
-		if (workRepository.findWorkByName(work).isPresent()) {
+		if (workRepository.findWorkByWork(work).isPresent()) {
 			throw new UserAllreadyExistsException("User with name" + work + " already exists");
 		}
 		return workRepository.insert(work, user);

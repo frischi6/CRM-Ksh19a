@@ -29,6 +29,6 @@ public interface HobbyRepository extends JpaRepository<HobbyImpl, Long> {
 		return savedNewHobby;
 	}
 
-	Optional<HobbyImpl> findHobbyByName(String hobby); // Spring black magic
+	Optional<HobbyImpl> findHobbyByHobby(String hobby); // Spring black magic
 
 }

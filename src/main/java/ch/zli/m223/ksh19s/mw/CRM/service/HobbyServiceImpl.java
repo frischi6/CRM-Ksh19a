@@ -37,7 +37,7 @@ public class HobbyServiceImpl implements HobbyService {
 		if (hobby == null)
 			throw new InvalidArgumentException("Name must not be null");
 		// If (user with userName exists) then throw UserAllreadyExistsException
-		if (hobbyRepository.findHobbyByName(hobby).isPresent()) {
+		if (hobbyRepository.findHobbyByHobby(hobby).isPresent()) {
 			throw new UserAllreadyExistsException("User with name" + hobby + " already exists");
 		}
 		return hobbyRepository.insert(hobby, user);

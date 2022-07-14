@@ -28,6 +28,6 @@ public interface RoleRepository extends JpaRepository<RoleImpl, Long> {
 		return savedNewRole;
 	}
 
-	Optional<RoleImpl> findRoleByName(String name); // Spring black magic
+	Optional<RoleImpl> findRoleByRole(String name); // Spring black magic
 
 }

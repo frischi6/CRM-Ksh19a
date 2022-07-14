@@ -29,6 +29,6 @@ public interface WorkRepository extends JpaRepository<WorkImpl, Long> {
 		return savedNewWork;
 	}
 
-	Optional<WorkImpl> findWorkByName(String work); // Spring black magic
+	Optional<WorkImpl> findWorkByWork(String work); // Spring black magic
 
 }

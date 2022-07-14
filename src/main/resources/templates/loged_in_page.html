@@ -4,6 +4,20 @@
     <title>Hello Ksh!</title>
   </head>
   <body>
-    <h1>Hallo logedin</h1>
+    <h1>You are loged in</h1>
+    <table>
+    <thead>
+    	<tr>
+    		<th>ID</th> <th>Name</th> <th>Klasse</th><th>Hobby</th><th>Praktikumsbetrieb</th>
+		</tr>
+	</thead>
+		<tr th:each="user : ${users}">
+			<td th:text="${user.id}">user_id</td>
+			<td th:text="${user.name}">user_name</td>
+			<td th:text="${user.course}">user_course</td>
+			<td th:text="${user.hobby}">user_hobby</td>
+			<td th:text="${user.work}">user_works</td>
+		</tr>
+    </table>
   </body>
 </html>

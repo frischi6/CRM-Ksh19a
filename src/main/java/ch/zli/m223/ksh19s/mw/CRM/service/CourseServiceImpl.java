@@ -10,47 +10,47 @@ import ch.zli.m223.ksh19s.mw.CRM.exception.InvalidArgumentException;
 import ch.zli.m223.ksh19s.mw.CRM.exception.UserAllreadyExistsException;
 import ch.zli.m223.ksh19s.mw.CRM.exception.UserNotFoundException;
 import ch.zli.m223.ksh19s.mw.CRM.model.AppUser;
-import ch.zli.m223.ksh19s.mw.CRM.model.Role;
-import ch.zli.m223.ksh19s.mw.CRM.repository.RoleRepository;
+import ch.zli.m223.ksh19s.mw.CRM.model.Course;
+import ch.zli.m223.ksh19s.mw.CRM.repository.CourseRepository;
 
 @Service
-public class RoleServiceImpl implements RoleService {
+public class CourseServiceImpl implements CourseService {
 
 	@Autowired
-	private RoleRepository roleRepository;
+	private CourseRepository courseRepository;
 	private AppUser user;
 
 	@Override
-	public List<Role> getAllRoles() {
-		return new ArrayList<>(roleRepository.findAll());
+	public List<Course> getAllCourses() {
+		return new ArrayList<>(courseRepository.findAll());
 	}
 
 	@Override
-	public Role getRole(Long id) {
-		return roleRepository.findById(id).orElseThrow(() -> {
+	public Course getCourse(Long id) {
+		return courseRepository.findById(id).orElseThrow(() -> {
 			throw new UserNotFoundException("Invalid user Id " + id);
 		});
 	}
 
 	@Override
-	public Role insertRole(String role) {
-		if (role == null)
+	public Course insertCourse(String course) {
+		if (course == null)
 			throw new InvalidArgumentException("Name must not be null");
 		// If (user with userName exists) then throw UserAllreadyExistsException
-		if (roleRepository.findRoleByRole(role).isPresent()) {
-			throw new UserAllreadyExistsException("User with name" + role + " already exists");
+		if (courseRepository.findCourseByCourse(course).isPresent()) {
+			throw new UserAllreadyExistsException("User with name" + course + " already exists");
 		}
-		return roleRepository.insert(role, user);
+		return courseRepository.insert(course, user);
 	}
 
 	@Override
-	public void deleteRoleById(Long id) {
+	public void deleteCourseById(Long id) {
 		if (id == null)
 			throw new InvalidArgumentException("Id must not be null");
-		if (roleRepository.findById(id).isEmpty()) {
+		if (courseRepository.findById(id).isEmpty()) {
 			return;
 		}
-		roleRepository.deleteById(id);
+		courseRepository.deleteById(id);
 	}
 
 }
