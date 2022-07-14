@@ -15,11 +15,27 @@ public class UserWebController {
 
 	@Autowired
 	private UserService userService;
-	
+
 	@GetMapping("/userlist")
 	String getUserList(Model model) {
 		List<AppUser> userList = userService.getAllUsers();
 		model.addAttribute("users", userList);
 		return "userList";
 	}
+
+	@GetMapping("/admin")
+	String gotoAdminPage() {
+		return "admin_page";
+	}
+
+	@GetMapping("/user")
+	String gotoUserPage() {
+		return "user_page";
+	}
+
+	@GetMapping("/logedin")
+	String gotoLogedInPage() {
+		return "loged_in_page";
+	}
+
 }

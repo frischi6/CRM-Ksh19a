@@ -10,45 +10,47 @@ import ch.zli.m223.ksh19s.mw.CRM.exception.InvalidArgumentException;
 import ch.zli.m223.ksh19s.mw.CRM.exception.UserAllreadyExistsException;
 import ch.zli.m223.ksh19s.mw.CRM.exception.UserNotFoundException;
 import ch.zli.m223.ksh19s.mw.CRM.model.AppUser;
-import ch.zli.m223.ksh19s.mw.CRM.repository.UserRepository;
+import ch.zli.m223.ksh19s.mw.CRM.model.Hobby;
+import ch.zli.m223.ksh19s.mw.CRM.repository.HobbyRepository;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class HobbyServiceImpl implements HobbyService {
 
 	@Autowired
-	private UserRepository userRepository;
+	private HobbyRepository hobbyRepository;
+	private AppUser user;
 
 	@Override
-	public List<AppUser> getAllUsers() {
-		return new ArrayList<>(userRepository.findAll());
+	public List<Hobby> getAllHobbies() {
+		return new ArrayList<>(hobbyRepository.findAll());
 	}
 
 	@Override
-	public AppUser getUser(Long id) {
-		return userRepository.findById(id).orElseThrow(() -> {
+	public Hobby getHobby(Long id) {
+		return hobbyRepository.findById(id).orElseThrow(() -> {
 			throw new UserNotFoundException("Invalid user Id " + id);
 		});
 	}
 
 	@Override
-	public AppUser insertUser(String name, String password) {
-		if (name == null)
+	public Hobby insertHobby(String hobby) {
+		if (hobby == null)
 			throw new InvalidArgumentException("Name must not be null");
 		// If (user with userName exists) then throw UserAllreadyExistsException
-		if (userRepository.findUserByName(name).isPresent()) {
-			throw new UserAllreadyExistsException("User with name" + name + " already exists");
+		if (hobbyRepository.findHobbyByName(hobby).isPresent()) {
+			throw new UserAllreadyExistsException("User with name" + hobby + " already exists");
 		}
-		return userRepository.insert(name, password);
+		return hobbyRepository.insert(hobby, user);
 	}
 
 	@Override
-	public void deleteUserById(Long id) {
+	public void deleteHobbyById(Long id) {
 		if (id == null)
 			throw new InvalidArgumentException("Id must not be null");
-		if (userRepository.findById(id).isEmpty()) {
+		if (hobbyRepository.findById(id).isEmpty()) {
 			return;
 		}
-		userRepository.deleteById(id);
+		hobbyRepository.deleteById(id);
 	}
 
 }

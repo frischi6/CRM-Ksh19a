@@ -10,45 +10,47 @@ import ch.zli.m223.ksh19s.mw.CRM.exception.InvalidArgumentException;
 import ch.zli.m223.ksh19s.mw.CRM.exception.UserAllreadyExistsException;
 import ch.zli.m223.ksh19s.mw.CRM.exception.UserNotFoundException;
 import ch.zli.m223.ksh19s.mw.CRM.model.AppUser;
-import ch.zli.m223.ksh19s.mw.CRM.repository.UserRepository;
+import ch.zli.m223.ksh19s.mw.CRM.model.Work;
+import ch.zli.m223.ksh19s.mw.CRM.repository.WorkRepository;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class WorkServiceImpl implements WorkService {
 
 	@Autowired
-	private UserRepository userRepository;
+	private WorkRepository workRepository;
+	private AppUser user;
 
 	@Override
-	public List<AppUser> getAllUsers() {
-		return new ArrayList<>(userRepository.findAll());
+	public List<Work> getAllWorks() {
+		return new ArrayList<>(workRepository.findAll());
 	}
 
 	@Override
-	public AppUser getUser(Long id) {
-		return userRepository.findById(id).orElseThrow(() -> {
+	public Work getWork(Long id) {
+		return workRepository.findById(id).orElseThrow(() -> {
 			throw new UserNotFoundException("Invalid user Id " + id);
 		});
 	}
 
 	@Override
-	public AppUser insertUser(String name, String password) {
-		if (name == null)
+	public Work insertWork(String work) {
+		if (work == null)
 			throw new InvalidArgumentException("Name must not be null");
 		// If (user with userName exists) then throw UserAllreadyExistsException
-		if (userRepository.findUserByName(name).isPresent()) {
-			throw new UserAllreadyExistsException("User with name" + name + " already exists");
+		if (workRepository.findWorkByName(work).isPresent()) {
+			throw new UserAllreadyExistsException("User with name" + work + " already exists");
 		}
-		return userRepository.insert(name, password);
+		return workRepository.insert(work, user);
 	}
 
 	@Override
-	public void deleteUserById(Long id) {
+	public void deleteWorkById(Long id) {
 		if (id == null)
 			throw new InvalidArgumentException("Id must not be null");
-		if (userRepository.findById(id).isEmpty()) {
+		if (workRepository.findById(id).isEmpty()) {
 			return;
 		}
-		userRepository.deleteById(id);
+		workRepository.deleteById(id);
 	}
 
 }

@@ -9,8 +9,8 @@ import ch.zli.m223.ksh19s.mw.CRM.model.AppUserImpl;
 
 public interface UserRepository extends JpaRepository<AppUserImpl, Long> {
 
-	default AppUser insert(String userName) {
-		AppUserImpl user = new AppUserImpl(userName);
+	default AppUser insert(String userName, String password) {
+		AppUserImpl user = new AppUserImpl(userName, password);
 		return save(user);
 	}
 

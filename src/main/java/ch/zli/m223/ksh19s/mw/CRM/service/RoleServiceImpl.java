@@ -10,45 +10,47 @@ import ch.zli.m223.ksh19s.mw.CRM.exception.InvalidArgumentException;
 import ch.zli.m223.ksh19s.mw.CRM.exception.UserAllreadyExistsException;
 import ch.zli.m223.ksh19s.mw.CRM.exception.UserNotFoundException;
 import ch.zli.m223.ksh19s.mw.CRM.model.AppUser;
-import ch.zli.m223.ksh19s.mw.CRM.repository.UserRepository;
+import ch.zli.m223.ksh19s.mw.CRM.model.Role;
+import ch.zli.m223.ksh19s.mw.CRM.repository.RoleRepository;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class RoleServiceImpl implements RoleService {
 
 	@Autowired
-	private UserRepository userRepository;
+	private RoleRepository roleRepository;
+	private AppUser user;
 
 	@Override
-	public List<AppUser> getAllUsers() {
-		return new ArrayList<>(userRepository.findAll());
+	public List<Role> getAllRoles() {
+		return new ArrayList<>(roleRepository.findAll());
 	}
 
 	@Override
-	public AppUser getUser(Long id) {
-		return userRepository.findById(id).orElseThrow(() -> {
+	public Role getRole(Long id) {
+		return roleRepository.findById(id).orElseThrow(() -> {
 			throw new UserNotFoundException("Invalid user Id " + id);
 		});
 	}
 
 	@Override
-	public AppUser insertUser(String name, String password) {
-		if (name == null)
+	public Role insertRole(String role) {
+		if (role == null)
 			throw new InvalidArgumentException("Name must not be null");
 		// If (user with userName exists) then throw UserAllreadyExistsException
-		if (userRepository.findUserByName(name).isPresent()) {
-			throw new UserAllreadyExistsException("User with name" + name + " already exists");
+		if (roleRepository.findRoleByName(role).isPresent()) {
+			throw new UserAllreadyExistsException("User with name" + role + " already exists");
 		}
-		return userRepository.insert(name, password);
+		return roleRepository.insert(role, user);
 	}
 
 	@Override
-	public void deleteUserById(Long id) {
+	public void deleteRoleById(Long id) {
 		if (id == null)
 			throw new InvalidArgumentException("Id must not be null");
-		if (userRepository.findById(id).isEmpty()) {
+		if (roleRepository.findById(id).isEmpty()) {
 			return;
 		}
-		userRepository.deleteById(id);
+		roleRepository.deleteById(id);
 	}
 
 }
