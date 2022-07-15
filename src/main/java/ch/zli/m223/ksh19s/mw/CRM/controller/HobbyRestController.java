@@ -13,6 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 import ch.zli.m223.ksh19s.mw.CRM.controller.dto.HobbyDTO;
 import ch.zli.m223.ksh19s.mw.CRM.service.HobbyService;
 
+/**
+ * Rest Controller that shows Data in database format
+ * 
+ * @author sarah
+ * 
+ */
 @RestController
 @RequestMapping("/api/v1")
 public class HobbyRestController {
@@ -20,11 +26,22 @@ public class HobbyRestController {
 	@Autowired
 	private HobbyService hobbyService;
 
+	/**
+	 * shows all hobbies
+	 * 
+	 * @return List with all hobbies
+	 */
 	@GetMapping("/hobbies")
 	List<HobbyDTO> getAllHobbies() {
 		return hobbyService.getAllHobbies().stream().map(user -> new HobbyDTO(user)).collect(Collectors.toList());
 	}
 
+	/**
+	 * shows hobby the user with this id has noted
+	 * 
+	 * @param id of the user
+	 * @return hobby the user has noted
+	 */
 	@GetMapping("/hobbies/{id}")
 	HobbyDTO getHobby(@PathVariable("id") Long id) {
 		return new HobbyDTO(hobbyService.getHobby(id));
@@ -36,6 +53,11 @@ public class HobbyRestController {
 	 * }
 	 */
 
+	/**
+	 * deletes a hobby
+	 * 
+	 * @param id of the user which hobby will be deleted
+	 */
 	@DeleteMapping("/hobbies/{id}")
 	void deleteHobby(@PathVariable("id") Long id) {
 		hobbyService.deleteHobbyById(id);

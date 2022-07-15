@@ -19,6 +19,12 @@ public class UserWebController {
 	@Autowired
 	private UserService userService;
 
+	/**
+	 * shows all users with its data
+	 * 
+	 * @param model with data
+	 * @return page with all data
+	 */
 	@GetMapping("/userlist")
 	String getUserList(Model model) {
 		List<AppUser> userList = userService.getAllUsers();
@@ -26,39 +32,83 @@ public class UserWebController {
 		return "userList";
 	}
 
+	/**
+	 * when user is loged in with role admin
+	 * 
+	 * @return page with all data
+	 */
 	@GetMapping("/admin")
 	String gotoAdminPage() {
 		return "redirect:/userlist";
 	}
 
+	/**
+	 * when user is loged in with role user
+	 * 
+	 * @return page with all data
+	 */
 	@GetMapping("/user")
 	String gotoUserPage() {
 		return "redirect:/userlist";
 	}
 
+	/**
+	 * when user has loged in
+	 * 
+	 * @return page with all data
+	 */
 	@GetMapping("/logedin")
 	String gotoLogedInPage() {
 		return "redirect:/userlist";
 	}
 
+	/**
+	 * when a user gets deleted
+	 * 
+	 * @param id of user to delete
+	 * @return page with all data
+	 */
 	@GetMapping("/deleteUser/{id}")
 	String deleteUserWeb(@PathVariable("id") Long id) {
 		userService.deleteUserById(id);
 		return "redirect:/userlist";
 	}
 
+	/**
+	 * when user wants to add a new user
+	 * 
+	 * @param model of data
+	 * @return page where data of new user can be inserted
+	 */
 	@RequestMapping("/addNewUser")
 	public String addNewUser(Model model) {
-		// show a new user
 		return "showUserNewForm";
 	}
 
+	/**
+	 * after new user was added
+	 * 
+	 * @param model of data
+	 * @return page with all data
+	 */
 	@RequestMapping("/showUsers")
 	public String showUsers(Model model) {
 		model.addAttribute("users", userService.getAllUsers());
 		return "userlist";
 	}
 
+	/**
+	 * saves a new user
+	 * 
+	 * @param model    of data
+	 * @param name     of user
+	 * @param password of user
+	 * @param roles    of user
+	 * @param hobby    of user
+	 * @param works    of user
+	 * @param courses  of user
+	 * @return page with all data
+	 */
 	@RequestMapping("/saveUser")
 	public String saveNewUser(Model model, @RequestParam("username") String name,
 			@RequestParam("password") String password,
