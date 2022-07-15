@@ -8,6 +8,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import ch.zli.m223.ksh19a.mj.CRM.finals.FinalsWorks;
+import ch.zli.m223.ksh19s.mw.CRM.finals.AppRoles;
 import ch.zli.m223.ksh19s.mw.CRM.finals.FinalsCourses;
 import ch.zli.m223.ksh19s.mw.CRM.model.AppUser;
 import ch.zli.m223.ksh19s.mw.CRM.repository.CourseRepository;
@@ -15,7 +16,6 @@ import ch.zli.m223.ksh19s.mw.CRM.repository.HobbyRepository;
 import ch.zli.m223.ksh19s.mw.CRM.repository.RoleRepository;
 import ch.zli.m223.ksh19s.mw.CRM.repository.UserRepository;
 import ch.zli.m223.ksh19s.mw.CRM.repository.WorkRepository;
-import ch.zli.m223.ksh19s.mw.CRM.roles.AppRoles;
 
 @Component
 public class ServerInitializer implements ApplicationRunner {

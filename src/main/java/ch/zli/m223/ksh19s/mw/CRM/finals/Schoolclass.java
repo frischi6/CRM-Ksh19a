@@ -1,4 +1,4 @@
-package ch.zli.m223.ksh19s.mw.CRM.model;
+package ch.zli.m223.ksh19s.mw.CRM.finals;
 
 import java.util.ArrayList;
 import java.util.List;

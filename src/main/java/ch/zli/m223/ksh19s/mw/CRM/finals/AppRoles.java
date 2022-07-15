@@ -1,4 +1,4 @@
-package ch.zli.m223.ksh19s.mw.CRM.roles;
+package ch.zli.m223.ksh19s.mw.CRM.finals;
 
 public interface AppRoles {
 	public static final String USER = "user";

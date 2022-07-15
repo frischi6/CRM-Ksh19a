@@ -7,7 +7,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import ch.zli.m223.ksh19s.mw.CRM.roles.AppRoles;
+import ch.zli.m223.ksh19s.mw.CRM.finals.AppRoles;
 
 @SuppressWarnings("deprecation")
 @EnableWebSecurity

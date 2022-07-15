@@ -27,7 +27,7 @@
 							th:value="${password}" placeholder="Passwort" required="true" />
 					<h3>Your Role</h3>
 						<ul>
-							<li th:each="role : ${T(ch.zli.m223.ksh19s.mw.CRM.roles.AppRoles).ALL_ROLES}">
+							<li th:each="role : ${T(ch.zli.m223.ksh19s.mw.CRM.finals.AppRoles).ALL_ROLES}">
 						  		<input type="checkbox" th:text="${role}" th:value="${role}" th:name="rolenames"/>
 							</li>
 						</ul>
