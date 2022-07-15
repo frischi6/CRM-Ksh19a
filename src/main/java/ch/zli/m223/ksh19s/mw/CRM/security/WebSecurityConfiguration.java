@@ -35,8 +35,11 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	private void configureWeb(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests().antMatchers("/").permitAll().antMatchers("/admin/**").hasAuthority(AppRoles.ADMIN)
-				.antMatchers("/user/**").hasAnyAuthority(AppRoles.USER).antMatchers("/logedin").authenticated().and()
-				.formLogin().permitAll() // loginpage zugänglich für jeden
+				.antMatchers("/deleteUser/**").hasAuthority(AppRoles.ADMIN).antMatchers("/user/**")
+				.hasAnyAuthority(AppRoles.USER).antMatchers("/logedin").authenticated().and().formLogin().permitAll() // loginpage
+																														// zugänglich
+																														// für
+																														// jeden
 				.and().logout().permitAll(); // logoutpage zugänglich für jeden
 	}
 
