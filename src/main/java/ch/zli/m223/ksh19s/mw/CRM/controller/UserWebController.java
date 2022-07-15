@@ -28,17 +28,17 @@ public class UserWebController {
 
 	@GetMapping("/admin")
 	String gotoAdminPage() {
-		return "admin_page";
+		return "redirect:/userlist";
 	}
 
 	@GetMapping("/user")
 	String gotoUserPage() {
-		return "user_page";
+		return "redirect:/userlist";
 	}
 
 	@GetMapping("/logedin")
 	String gotoLogedInPage() {
-		return "loged_in_page";
+		return "redirect:/userlist";
 	}
 
 	@GetMapping("/deleteUser/{id}")
@@ -74,7 +74,7 @@ public class UserWebController {
 			model.addAttribute("password", password);
 			return "showUserNewForm";
 		}
-		return "redirect:/showUsers";
+		return "redirect:/userlist";
 	}
 
 }
